@@ -1,0 +1,50 @@
+---
+# Include variables and define needed variables.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+# Setup/install tasks.
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=86400
+  when: ansible_os_family == 'Debian'
+
+- name: Install libevent dependancies
+  package:
+    name: [libevent, libevent-devel, libevent-doc, libverto-libevent]
+    state: latest
+  register: memcached_install
+
+- name: Download and extract Memcached 1.5.15.tar.gz
+  unarchive:
+    src: "{{ memcache_url }}"
+    dest: "/tmp/"
+    remote_src: yes
+  register: memcached_install
+
+- name: Create memcached dir
+  file:
+    path: "{{ memcache_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Install Memcached 1.5.15.tar.gz
+  command: "sudo sh configure --prefix={{ memcache_dir }}/"
+  args:
+    chdir: "{{ install_dir }}"
+  register: config_mem
+
+- name: sudo make
+  command: "sudo make"
+  args:
+    chdir: "{{ install_dir }}"
+  register: config_mem
+
+- name: sudo make install
+  command: "sudo make install"
+  args:
+    chdir: "{{ install_dir }}"
+  register: config_mem
+
+- debug: msg="{{ config_mem.stdout }}"
+
+# sudo ./configure --prefix=/opt/memcached-1.5.15/ && make && sudo make install

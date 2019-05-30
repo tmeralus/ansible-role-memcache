@@ -1,0 +1,48 @@
+---
+# Include variables and define needed variables.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Copy 666 configuration.
+  copy:
+    src: "{{ playbook_dir }}/configs/666/memcached666.conf"
+    dest: "/etc/sysconfig/memcached666"
+    remote_src: no
+  when: "memcached_port is defined"
+
+- name: Copy 666 systemd config
+  copy:
+    src: "{{ playbook_dir }}/configs/666/systemd.conf"
+    dest: "/etc/systemd/system/memcached666.service"
+    remote_src: no
+  when: "memcached_port is defined"
+
+# for php memcache servers
+- name: Copy 999 configuration.
+  copy:
+    src: "{{ playbook_dir }}/configs/999/memcached999.conf"
+    dest: "/etc/sysconfig/memcached999"
+    remote_src: no
+  when: "memcached_port2 is defined"
+
+- name: Copy 999 systemd config
+  copy:
+    src: "{{ playbook_dir }}/configs/999/systemd.conf"
+    dest: "/etc/systemd/system/memcached999.service"
+    remote_src: no
+  when: "memcached_port2 is defined"
+
+# only for java memcache servers
+- name: Copy 888 configuration.
+  copy:
+    src: "{{ playbook_dir }}/configs/888/memcached888.conf"
+    dest: "/etc/sysconfig/memcached888"
+    remote_src: no
+  when: "memcached_port3 is defined"
+
+- name: Copy 888 systemd config
+  copy:
+    src: "{{ playbook_dir }}/configs/888/systemd.conf"
+    dest: "/etc/systemd/system/memcached888.service"
+    remote_src: no
+  when: "memcached_port3 is defined"
