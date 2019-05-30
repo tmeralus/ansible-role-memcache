@@ -23,8 +23,9 @@ Dependencies
  glibc and make tools are required to install memcached from souces. Dependancies are checked and installed during initial play.
 
 Test Playbook
------------ansible-playbook -i inventory/docker
- roles/memcache/main.yml-----
+
+ ansible-playbook -i inventory/docker
+ roles/memcache/main.yml
 
 License
 ---
