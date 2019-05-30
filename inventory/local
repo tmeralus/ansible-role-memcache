@@ -1,0 +1,17 @@
+localhost ansible_connection=local
+
+[sheep]
+dolly ansible_host=13.52.184.210 
+dolly2 ansible_host=54.153.47.212
+
+[autobots]
+optimus image="tmeralus/ubuntu12.04"
+ironhide image="ubuntu-upstart:14.04"
+
+[decepticons]
+megatron image="tmeralus/centos7"
+starscream image="tmeralus/centos7"
+
+[robots:children]
+autobots
+decepticons

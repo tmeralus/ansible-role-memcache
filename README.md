@@ -24,7 +24,7 @@ Dependencies
 
 Test Playbook
 
- ansible-playbook -i inventory/docker
+ ansible-playbook -i inventory/local
  roles/memcache/main.yml
 
 License

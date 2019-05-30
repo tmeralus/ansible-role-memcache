@@ -1,0 +1,26 @@
+[all:vars]
+log_base_path=/nfs/booking_logs
+
+[web-dev]
+web-dev01 env=dev
+
+[web-stage]
+web-stage01 env=stg
+
+[web:children]
+web-dev
+web-stage
+
+[redis-servers]
+redis-dev[01:02]
+sentinel-dev01
+
+[sentinel-server]
+sentinel-dev01 env=sentinel
+
+[memcache-dev]
+memcache-dev01
+
+[sql-db]
+mysql-dev01
+mysql-dev02
