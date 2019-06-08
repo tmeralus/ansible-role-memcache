@@ -1,11 +1,22 @@
-- name: Add Port 666 TCP
+- name: Add TCP PORT {{ memcached_port }}
   iptables:
     chain: INPUT
     protocol: tcp
     jump: ACCEPT
-    destination_port: 666
+    destination_port: "{{ memcached_port }}"
 
-#- name: Bounce iptables
-#  service:
-#    name: iptables
-#    state: restarted
+- name: Add TCP PORT {{ memcached_port2 }}
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    jump: ACCEPT
+    destination_port: "{{ memcached_port2 }}"
+  when: "memcached_port2 is defined"
+
+- name: Add TCP PORT {{ memcached_port3 }}
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    jump: ACCEPT
+    destination_port: "{{ memcached_port3 }}"
+  when: "memcached_port3 is defined"

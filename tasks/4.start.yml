@@ -1,24 +1,25 @@
-- name: system daemon-reload to pick up config changes
+---
+- name: Reload systemd
   systemd:
     daemon_reload: yes
 
-- name: Ensure Memcached 666 is is started and enabled.
-  service:
-    name: memcached666
+- name: Ensure Memcached {{ memcached_port }} is is started and enabled.
+  systemd:
+    name: memcached{{ memcached_port }}
     state: started
     enabled: yes
 
-- name: Ensure Memcached 888(Java) is started and enabled.
-  service:
-    name: memcached888
+- name: Ensure Memcached {{ memcached_port2 }} is started and enabled.
+  systemd:
+    name: memcached{{ memcached_port2 }}
     state: started
     enabled: yes
   when: "memcached_port2 is defined"
 
 
-- name: Ensure Memcached 999(PHP) is started and enabled.
-  service:
-    name: memcached999
+- name: Ensure Memcached {{ memcached_port3 }} is started and enabled.
+  systemd:
+    name: memcached{{ memcached_port3 }}
     state: started
     enabled: yes
   when: "memcached_port3 is defined"

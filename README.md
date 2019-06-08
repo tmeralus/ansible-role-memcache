@@ -6,24 +6,31 @@ ansible-role-memcache-setup
 
 Requirements
 
-An inventory dir is added to this playbook
-for testing purposes. Changes need to be mode to point to the properly inventory file and host_name(s)
-------------
-This playbook has a setup task that installs build-essentials if
-Debian based distros are found and Devlopment Tools if RedHat Based distros are found
+This playbook has a setup task that installs Devlopment Tools
+on RedHat/CentOS Based distros are found
 
 Role Variables
-  Memcache Port 2 and 3 can be uncommented .under defaults/main.yml
-  to add multiple instances of memcached on the same servers
+  Memcache Port 2 and 3 can be coomented/uncommented in each OS-specificed var file
+  to add multiple instances of memcached on the same server
 
   memcached_port: '666'
   memcached_port2: '888'
   memcached_port3: '999'
   memcached_listen_ip: 127.0.0.1
+  memcache_version: "memcached-1.5.15"
+  memcache_url: "http://www.memcached.org/files/{{ memcache_version }}.tar.gz"
+  memcache_dir: "/opt/{{ memcache_version }}"
+  install_dir: "/tmp/{{ memcache_version }}"
+  memcached_user: root
+  memcached_config_file: /etc/sysconfig/memcached
+  memcached_memory_limit: '2048'
+  memcached_connections: '2048'
+  memcached_cache: '2048'
 
 Dependencies
 ------------
- glibc and make tools are required to install memcached from souces. Dependancies are checked and installed during initial play.
+ glibc and cmake tools are required to install memcached from souces.
+
 
 Test Playbook
 
@@ -31,8 +38,8 @@ Test Playbook
  roles/memcache/main.yml
 
 License
----
-BSD
+GNU GPLv3
+
 
 Author Information
  Twitter: @TechGameTeddy

@@ -8,8 +8,15 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Install C compiler build essentials
+- name: Install libevent dependancies
   package:
-    name: build-essential
-    state: present
-  when: ansible_os_family == "Debian"
+    name: [libevent, libevent-devel, libevent-doc, libverto-libevent]
+    state: latest
+  register: memcached_install
+  when: ansible_os_family == "RedHat"
+
+#- name: Install C compiler build essentials
+#  package:
+#    name: build-essential
+#    state: present
+#  when: ansible_os_family == "Debian"
