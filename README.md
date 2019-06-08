@@ -1,10 +1,13 @@
-Role Name
+Memcached-Setup
 =========
 
 ansible-role-memcache-setup
 
 
 Requirements
+
+An inventory dir is added to this playbook
+for testing purposes. Changes need to be mode to point to the properly inventory file and host_name(s)
 ------------
 This playbook has a setup task that installs build-essentials if
 Debian based distros are found and Devlopment Tools if RedHat Based distros are found
