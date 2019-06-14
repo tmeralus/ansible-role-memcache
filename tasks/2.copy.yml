@@ -1,45 +1,33 @@
 ---
-
-- name: Copy memcache{{ memcached_port }} configuration.
-  copy:
-    src: "{{ playbook_dir }}/configs/port1/memcached.conf"
+ #COPY PORT 1 FILES
+- name: Copy memcache{{ memcached_port }} conf
+  template:
+    src: conf-port1.j2
     dest: "/etc/sysconfig/memcached{{ memcached_port }}"
-    remote_src: no
-  when: "memcached_port is defined"
 
-- name: Copy memcache{{ memcached_port }} systemd config
-  copy:
-    src: "{{ playbook_dir }}/configs/port1/systemd.conf"
+- name: Copy memcache{{ memcached_port }} systemd config.
+  template:
+    src: systemd-port1.j2
     dest: "/etc/systemd/system/memcached{{ memcached_port }}.service"
-    remote_src: no
-  when: "memcached_port is defined"
 
-# For a second instance of memcached
-- name: Copy memcache{{ memcached_port2 }} configuration.
-  copy:
-    src: "{{ playbook_dir }}/configs/port2/memcached.conf"
+ #COPY PORT 2 FILES
+- name: Copy memcache{{ memcached_port2 }} conf
+  template:
+    src: conf-port2.j2
     dest: "/etc/sysconfig/memcached{{ memcached_port2 }}"
-    remote_src: no
-  when: "memcached_port2 is defined"
 
-- name: Copy memcache{{ memcached_port2 }} systemd config
-  copy:
-    src: "{{ playbook_dir }}/configs/port2/systemd.conf"
+- name: Copy memcache{{ memcached_port2 }} systemd config.
+  template:
+    src: systemd-port2.j2
     dest: "/etc/systemd/system/memcached{{ memcached_port2 }}.service"
-    remote_src: no
-  when: "memcached_port2 is defined"
 
-# For a third instance of memcached
-- name: Copy memcache{{ memcached_port3 }} configuration.
-  copy:
-    src: "{{ playbook_dir }}/configs/port3/memcached.conf"
+ #COPY PORT 3 FILES
+- name: Copy memcache{{ memcached_port3 }} conf
+  template:
+    src: conf-port3.j2
     dest: "/etc/sysconfig/memcached{{ memcached_port3 }}"
-    remote_src: no
-  when: "memcached_port3 is defined"
 
-- name: Copy memcache{{ memcached_port3 }} systemd config
-  copy:
-    src: "{{ playbook_dir }}/configs/port3/systemd.conf"
+- name: Copy memcache{{ memcached_port3 }} systemd config.
+  template:
+    src: systemd-port3.j2
     dest: "/etc/systemd/system/memcached{{ memcached_port3 }}.service"
-    remote_src: no
-  when: "memcached_port3 is defined"

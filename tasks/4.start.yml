@@ -16,7 +16,6 @@
     enabled: yes
   when: "memcached_port2 is defined"
 
-
 - name: Ensure Memcached {{ memcached_port3 }} is started and enabled.
   systemd:
     name: memcached{{ memcached_port3 }}
