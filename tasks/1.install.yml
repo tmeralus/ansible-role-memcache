@@ -16,18 +16,13 @@
   command: "sudo sh configure --prefix={{ memcache_dir }}/"
   args:
     chdir: "{{ install_dir }}"
-  register: config_mem
 
 - name: sudo make
   command: "sudo make"
   args:
     chdir: "{{ install_dir }}"
-  register: config_mem
 
 - name: sudo make install
   command: "sudo make install"
   args:
     chdir: "{{ install_dir }}"
-  register: config_mem
-
-- debug: msg="{{ config_mem.stdout }}"
