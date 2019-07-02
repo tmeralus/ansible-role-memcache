@@ -13,16 +13,18 @@
     mode: '0755'
 
 - name: Install {{ memcache_version }}
-  command: "sudo sh configure --prefix={{ memcache_dir }}/"
+  command: "sh configure --prefix={{ memcache_dir }}/"
   args:
     chdir: "{{ install_dir }}"
+  become: true
 
-- name: sudo make
-  command: "sudo make"
-  args:
+- name: Sudo Make
+  make:
     chdir: "{{ install_dir }}"
+  become: yes
 
-- name: sudo make install
-  command: "sudo make install"
-  args:
+- name: Sudo Make Install
+  make:
     chdir: "{{ install_dir }}"
+    target: install
+  become: true
