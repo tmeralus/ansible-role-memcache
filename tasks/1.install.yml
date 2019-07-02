@@ -17,6 +17,8 @@
   args:
     chdir: "{{ install_dir }}"
   become: true
+  tags:
+    - skip_ansible_lint
 
 - name: Sudo Make
   make:
