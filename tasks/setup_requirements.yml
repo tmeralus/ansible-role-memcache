@@ -11,12 +11,6 @@
 - name: Install libevent dependancies
   package:
     name: [libevent, libevent-devel, libevent-doc, libverto-libevent]
-    state: latest
+    state: present
   register: memcached_install
   when: ansible_os_family == "RedHat"
-
-#- name: Install C compiler build essentials
-#  package:
-#    name: build-essential
-#    state: present
-#  when: ansible_os_family == "Debian"
