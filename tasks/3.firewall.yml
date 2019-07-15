@@ -22,26 +22,26 @@
     destination_port: "{{ memcached_port3 }}"
   when: "memcached_port is defined and ansible_distribution == 'RedHat'"
 
-- name: Add TCP PORT {{ memcached_port1 }}
-  firewalld:
-   port: "{{ memcached_port }}/tcp"
-   zone: public
-   permanent: true
-   state: enabled
-  when: "memcached_port is defined and ansible_distribution == 'CentOS'"
+#- name: Add TCP PORT {{ memcached_port1 }}
+#  firewalld:
+#   port: "{{ memcached_port }}/tcp"
+#   zone: public
+#   permanent: true
+#   state: enabled
+#  when: "memcached_port is defined and ansible_distribution == 'CentOS'"
 
-- name: Add TCP PORT {{ memcached_port2 }}
-  firewalld:
-   port: "{{ memcached_port2 }}/tcp"
-   zone: public
-   permanent: true
-   state: enabled
-  when: "memcached_port2 is defined and ansible_distribution == 'CentOS'"
+#- name: Add TCP PORT {{ memcached_port2 }}
+#  firewalld:
+#   port: "{{ memcached_port2 }}/tcp"
+#   zone: public
+#   permanent: true
+#   state: enabled
+#  when: "memcached_port2 is defined and ansible_distribution == 'CentOS'"
 
-- name: Add TCP PORT {{ memcached_port3 }}
-  firewalld:
-   port: "{{ memcached_port3 }}/tcp"
-   zone: public
-   permanent: true
-   state: enabled
-  when: "memcached_port3 is defined and ansible_distribution == 'CentOS'"
+#- name: Add TCP PORT {{ memcached_port3 }}
+#  firewalld:
+#   port: "{{ memcached_port3 }}/tcp"
+#   zone: public
+#   permanent: true
+#   state: enabled
+#  when: "memcached_port3 is defined and ansible_distribution == 'CentOS'"
